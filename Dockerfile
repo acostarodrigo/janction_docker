@@ -1,11 +1,15 @@
-# Start from an Ubuntu base image (no ARM here since Rosetta handles x86)
+# Use the Blender base image from linuxserver
 FROM linuxserver/blender
 
 # Set working directory
 WORKDIR /workspace
 
 # Copy your .blend file into the container
-COPY greasepencil-bike.blend /workspace/greasepencil-bike.blend
+# COPY greasepencil-bike.blend /workspace/greasepencil-bike.blend
+COPY run_blender.sh /workspace/run_blender.sh
 
-# Command to run Blender in background mode
-CMD ["blender", "-b", "/workspace/greasepencil-bike.blend", "-o", "/workspace/output/frame_######", "-F", "PNG", "-E", "CYCLES", "-s", "16", "-e", "30", "-a"]
+# Set executable permissions for the script
+RUN chmod +x /workspace/run_blender.sh
+
+# Command to run the Blender script
+CMD ["/workspace/run_blender.sh"]
