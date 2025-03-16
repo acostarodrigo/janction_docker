@@ -2,10 +2,10 @@
 FROM linuxserver/blender
 
 # Set working directory
-WORKDIR /seed
+WORKDIR /script
 
 # Copies the script that will fixed the seed for deterministics renders
-COPY set_seed.py /seed/set_seed.py
+COPY set_params.py /script/set_params.py
 
 # Set executable permissions for the script 
-RUN chmod +x /seed/set_seed.py
+RUN chmod +x /script/set_params.py
