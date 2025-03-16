@@ -1,7 +1,11 @@
 import random
 import bpy
 
-# Set the seed (use the same value for consistent results)
-seed_value = 123455
-random.seed(seed_value)
-bpy.context.scene.render.seed = seed_value  # Set the seed for rendering
+# Set a fixed seed value for deterministic renders
+SEED_VALUE = 123455
+
+# Ensure Blender is using Cycles
+bpy.context.scene.render.engine = 'CYCLES'
+
+# Set the seed for Cycles rendering
+bpy.context.scene.cycles.seed = SEED_VALUE
